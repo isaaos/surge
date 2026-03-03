@@ -1,14 +1,15 @@
+cat > /data/config.json << 'EOF'
 {
   "dns": {
     "servers": [
       {
         "type": "udp",
         "tag": "dns-direct",
-        "server": "223.5.5.5",
-        "detour": "direct"
+        "server": "8.8.8.8",
+        "server_port": 53,
+        "bind_interface": "rmnet_data0"
       }
     ],
-    "rules": [],
     "final": "dns-direct"
   },
   "inbounds": [
@@ -27,15 +28,8 @@
     }
   ],
   "route": {
-    "rules": [
-      {
-        "action": "sniff"
-      },
-      {
-        "protocol": "dns",
-        "action": "hijack-dns"
-      }
-    ],
+    "auto_detect_interface": false,
     "final": "direct"
   }
 }
+EOF
