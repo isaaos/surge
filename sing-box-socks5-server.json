@@ -2,11 +2,12 @@
   "dns": {
     "servers": [
       {
+        "type": "udp",
         "tag": "dns-direct",
-        "address": "223.5.5.5",
-        "detour": "direct"
+        "server": "223.5.5.5"
       }
-    ]
+    ],
+    "final": "dns-direct"
   },
   "inbounds": [
     {
@@ -30,10 +31,6 @@
       {
         "protocol": "dns",
         "action": "hijack-dns"
-      },
-      {
-        "action": "route",
-        "outbound": "direct"
       }
     ],
     "final": "direct"
